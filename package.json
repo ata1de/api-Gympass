@@ -7,7 +7,9 @@
     "build": "tsup src --out-dir build",
     "start": "node build/server.js",
     "migration": "prisma migrate dev",
-    "studio": "prisma studio"
+    "studio": "prisma studio",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +22,9 @@
     "prisma": "5.16.1",
     "tsup": "8.1.0",
     "tsx": "4.16.2",
-    "typescript": "5.5.3"
+    "typescript": "5.5.3",
+    "vite-tsconfig-paths": "4.3.2",
+    "vitest": "2.0.0"
   },
   "dependencies": {
     "@prisma/client": "5.16.1",
