@@ -1,7 +1,7 @@
 import { InMemoryUsersRepository } from '@/repositories/in-memory/in-memory-users-repository'
 import { hash } from 'bcryptjs'
 import { beforeEach, describe, expect, it } from 'vitest'
-import { ResourceNotFound } from './errors/resource-not-found'
+import { ResourceNotFound } from '../errors/resource-not-found'
 import { GetUserProfileUseCase } from './get-user-profile'
 
 
