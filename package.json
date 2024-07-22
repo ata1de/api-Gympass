@@ -9,7 +9,8 @@
     "migration": "prisma migrate dev",
     "studio": "prisma studio",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:coverage": "vitest --coverage"
   },
   "keywords": [],
   "author": "",
