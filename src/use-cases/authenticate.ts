@@ -4,19 +4,19 @@ import { compare } from "bcryptjs";
 import { InvalidCredentials } from "./errors/invalid-credentials";
 
 
-interface AuthenticateRequest {
+interface AuthenticateUseCaseRequest {
     email: string;
     password: string;
 }
 
-interface AuthenticateResponse {
+interface AuthenticateUseCaseResponse {
     user: User
 }
 
 export class AuthenticateUseCase {
     constructor(private userRepository: UsersRepository) {}
 
-    async execute({email, password}: AuthenticateRequest): Promise<AuthenticateResponse>{
+    async execute({email, password}: AuthenticateUseCaseRequest): Promise<AuthenticateUseCaseResponse>{
         // Buscar o usuário no banco pelo email
         // Compara se a senha do banco bate com a senha passada
         const user = await this.userRepository.findByEmail(email)
