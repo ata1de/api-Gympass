@@ -2,6 +2,8 @@ import { InMemoryCheckInRepository } from "@/repositories/in-memory/in-memory-ch
 import { InMemoryGymRepository } from "@/repositories/in-memory/in-memory-gym-respository";
 import { Decimal } from "@prisma/client/runtime/library";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { MaxNumberOfCheckInsError } from "../errors/max-checkIn-number";
+import { MaxDistanceError } from "../errors/max-distance";
 import { CheckInUseCase } from "./checkin-use-case";
 
 
@@ -18,9 +20,10 @@ describe('CheckIn Use Case', () => {
         vi.useFakeTimers()
 
         await gymRepository.create({
-            name: 'gymId-01',
-            latitude: -8.126464,
-            longitude: -34.9077504,
+            id: 'gymId-01',
+            name: 'Academia Teste',
+            latitude: new Decimal(-8.126464),
+            longitude: new Decimal(-34.9077504),
             description: 'Academia Teste',
             phone: '123456789',
         })
@@ -61,7 +64,7 @@ describe('CheckIn Use Case', () => {
                 userLatitude: -8.126464,
                 userLongitude: -34.9077504
             }), 
-        ).rejects.toBeInstanceOf(Error)
+        ).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
 
     })
 
@@ -104,7 +107,7 @@ describe('CheckIn Use Case', () => {
             userId: 'userId-01',
             userLatitude: -8.126464,
             userLongitude: -34.9077504 
-        })).rejects.toBeInstanceOf(Error)
+        })).rejects.toBeInstanceOf(MaxDistanceError)
 
     })
 
