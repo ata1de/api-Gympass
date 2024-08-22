@@ -29,4 +29,11 @@ export class InMemoryGymRepository implements GymRepository {
         this.items.push(gym)  
         return gym
     }
+
+    async findByQuery(query: string, page: number) {
+        return this.items
+        .filter((gym) => gym.name.includes(query))
+        .slice((page - 1) * 20, page * 20)
+    }
+
 }
