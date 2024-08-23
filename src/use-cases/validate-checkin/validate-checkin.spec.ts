@@ -1,6 +1,6 @@
 import { InMemoryCheckInRepository } from "@/repositories/in-memory/in-memory-checkIn-repository";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { LateCheckInValidationError } from "../errors/lateCheckInValidationError";
+import { LateCheckInValidationError } from "../errors/late-checkIn-validation";
 import { ResourceNotFound } from "../errors/resource-not-found";
 import { ValidateCheckInUseCase } from "./validate-checkin";
 
