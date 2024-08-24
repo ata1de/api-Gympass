@@ -23,10 +23,13 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
         sub: user.id.toString(),
       } }
     )
-
+    
     return reply.status(200).send({
-      user,
-      token,
+      user: {
+        ...user,
+        password: undefined,
+      },
+      token: token,
     })
   } catch (error) {
     if (error instanceof InvalidCredentials) {
