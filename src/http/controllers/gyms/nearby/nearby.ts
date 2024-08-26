@@ -16,7 +16,9 @@ export async function nearby(request: FastifyRequest, reply: FastifyReply) {
 
     const fetchNearbyGymUseCase = MakeFetchNearbyGymsUseCase()
 
-    await fetchNearbyGymUseCase.execute({ userLatitude, userLongitude })
+    const { gyms } = await fetchNearbyGymUseCase.execute({ userLatitude, userLongitude })
 
-    return reply.status(201).send()
+    return reply.status(201).send({
+        gyms
+    })
 }

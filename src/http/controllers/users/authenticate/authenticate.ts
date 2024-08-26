@@ -24,8 +24,6 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
       } }
     )
 
-    console.log(token)
-    
     return reply.status(200).send({
       user: {
         ...user,
