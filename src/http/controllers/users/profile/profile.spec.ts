@@ -12,15 +12,15 @@ describe("Get profile details (e2e)", () => {
     })
 
     it("should be able get profile details", async () => {
-        const user = await request(app.server).post('/register').send({
+        await request(app.server).post('/register').send({
             name: "John Doe",
             email: "jhon@email.com",
             password: "123456"
         })
 
         const authResponse = await request(app.server).post('/auth').send({
-            email: user.body.email,
-            password: user.body.password
+            email: "jhon@email.com",
+            password: "123456"
         })
 
         const { token } = authResponse.body
@@ -31,7 +31,7 @@ describe("Get profile details (e2e)", () => {
        .send()
 
        expect(profileResponse.statusCode).toEqual(200)
-       expect(profileResponse.body).toEqual(
+       expect(profileResponse.body.user).toEqual(
         expect.objectContaining({
             email: 'jhon@email.com'
         })

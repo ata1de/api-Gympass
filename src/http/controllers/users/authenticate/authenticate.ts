@@ -16,20 +16,22 @@ export async function authenticate(request: FastifyRequest, reply: FastifyReply)
 
     const { user } = await authenticateUseCase.execute({ email, password })
 
-    const token = reply.jwtSign(
+    const token = await reply.jwtSign(
       {},
       { sign: {
         // expiresIn: '1h',
         sub: user.id.toString(),
       } }
     )
+
+    console.log(token)
     
     return reply.status(200).send({
       user: {
         ...user,
-        password: undefined,
+        password_hash: undefined,
       },
-      token: token,
+      token
     })
   } catch (error) {
     if (error instanceof InvalidCredentials) {

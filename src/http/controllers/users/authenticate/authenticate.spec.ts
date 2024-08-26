@@ -12,15 +12,15 @@ describe("Authenticate (e2e)", () => {
     })
 
     it("should be able authenticate a user exists", async () => {
-        const user = await request(app.server).post('/register').send({
+        await request(app.server).post('/register').send({
             name: "John Doe",
             email: "jhon@email.com",
             password: "123456"
         })
 
         const response = await request(app.server).post('/auth').send({
-            email: user.body.email,
-            password: user.body.password
+            email: "jhon@email.com",
+            password: "123456"
         })
 
         expect(response.status).toEqual(200)
