@@ -7,7 +7,7 @@ export async function metric(request: FastifyRequest, reply: FastifyReply) {
 
     const { count } = await historyGymUseCase.execute({ userId: request.user.sub })
 
-    return reply.status(201).send({
+    return reply.status(200).send({
         count
     })
 }

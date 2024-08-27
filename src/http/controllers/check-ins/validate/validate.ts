@@ -10,7 +10,7 @@ export async function validate(request: FastifyRequest, reply: FastifyReply) {
     })
 
     try {
-        const { checkInId } = validateParamsSchema.parse(request.query)
+        const { checkInId } = validateParamsSchema.parse(request.params)
 
         const validateGymUseCase = MakeValidateCheckInUseCase()
 

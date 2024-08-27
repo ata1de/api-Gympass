@@ -7,10 +7,10 @@ import { z } from 'zod'
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
     const createBodySchema = z.object({
-        userLatitude: z.number().refine(value => {
+        latitude: z.number().refine(value => {
             return Math.abs(value) <= 90
         }),
-        userLongitude: z.number().refine(value => {
+        longitude: z.number().refine(value => {
             return Math.abs(value) <= 180
         }),
     })
@@ -20,12 +20,12 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     })
 
     try {
-        const {  userLatitude, userLongitude } = createBodySchema.parse(request.body)
-        const { gymId } = createParamsSchema.parse(request.query)
+        const {  latitude, longitude } = createBodySchema.parse(request.body)
+        const { gymId } = createParamsSchema.parse(request.params)
 
-        const createGymUseCase = MakeCheckInUseCase()
+        const createCheckInUseCase = MakeCheckInUseCase()
 
-        await createGymUseCase.execute({ userLatitude, userLongitude, gymId, userId: request.user.sub })
+        await createCheckInUseCase.execute({ userLatitude:latitude, userLongitude:longitude, gymId, userId: request.user.sub })
 
         return reply.status(201).send()
     } catch (error) {
