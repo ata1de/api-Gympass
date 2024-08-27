@@ -6,8 +6,14 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 describe("Get nearby gyms (e2e)", () => {
     beforeAll(async() => {
         await app.ready()
+    })
 
-        const token = await CreateAndAuthenticate()
+    afterAll(async() => {
+        await app.close()
+    })
+
+    it("should be able get nearby gyms", async () => {
+        const token = await CreateAndAuthenticate(true)
 
         await request(app.server)
         .post('/gyms')
@@ -30,16 +36,6 @@ describe("Get nearby gyms (e2e)", () => {
             latitude: 30,
             longitude: 110
         })
-
-        
-    })
-
-    afterAll(async() => {
-        await app.close()
-    })
-
-    it("should be able get nearby gyms", async () => {
-        const token = await CreateAndAuthenticate()
 
         const nearbyResponse = await request(app.server)
         .get('/gyms/nearby')
