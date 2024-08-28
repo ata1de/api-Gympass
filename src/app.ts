@@ -15,7 +15,7 @@ export const app = fastify()
 
 // Registra o Swagger no Fastify
 app.register(fastifySwagger, {
-  swagger: swaggerSpec, // Aqui configuramos o swagger spec
+  swagger: swaggerSpec, 
 });
 
 // Configuração do Swagger UI
