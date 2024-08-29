@@ -4,11 +4,14 @@
 ![Imagem do WhatsApp de 2024-08-27 à(s) 21 43 38_38197ef4](https://github.com/user-attachments/assets/0dc77d10-f864-40d6-9b02-50660447d0d6)
 
 
-## ☕ More about 
+## ☕ Sobre // More about
 Esta API foi desenvolvida para um sistema de gym pass e oferece funcionalidades robustas para gerenciamento de academias e check-ins. Entre as principais características estão a criação e validação de check-ins com verificações de distância, utilizando coordenadas de latitude e longitude. O sistema também implementa controle de acesso baseado em funções **(RBAC)**, garantindo que apenas usuários autorizados possam realizar ações específicas, como a criação de academias.
+<hr/>
+
+This API was developed for a gym pass system and offers robust features for managing gyms and check-ins. Key features include creating and validating check-ins with distance checks using latitude and longitude coordinates. The system also implements role-based access control **(RBAC)** , ensuring that only authorized users can perform specific actions, such as creating gyms.
 
 
-## 🚀 Techs used 
+## 🚀 Techs  
 * **[ Fastify ](https://www.fastify.io/)**
 * **[ Zod ](https://zod.dev/)**
 * **[ Vitest ](https://vitest.dev/)**
@@ -20,9 +23,13 @@ Esta API foi desenvolvida para um sistema de gym pass e oferece funcionalidades 
 * **[ Refresh Tokens ](https://tools.ietf.org/html/rfc6749#section-1.5)**
 * **[ RBAC ](https://en.wikipedia.org/wiki/Role-based_access_control)**
 
-## 📝 Desafios e Aprendizados
+## 📝 Desafios e Aprendizados // Challenges and Learnings
 
 Este projeto proporcionou uma rica experiência de aprendizado, especialmente na implementação de **testes unitários** e **E2E**, onde foi necessário manipular o schema do banco de dados e criar novos ambientes a cada teste. A automação com **GitHub Actions** foi outra grande conquista, trazendo uma nova dimensão de eficiência e qualidade ao processo de desenvolvimento.
+<hr/>
+This project provided a rich learning experience, especially in the implementation of **unit tests** and **E2E tests**, where it was necessary to manipulate the database schema and create new environments for each test. Automation with **GitHub Actions** was another major achievement, bringing a new level of efficiency and quality to the development process.
+
+
 
 ## RFs (Requisitos funcionais)
 
