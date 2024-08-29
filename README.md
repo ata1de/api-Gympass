@@ -5,7 +5,7 @@
 
 
 ## ☕ More about 
-Esta API foi desenvolvida para um sistema de gym pass e oferece funcionalidades robustas para gerenciamento de academias e check-ins. Entre as principais características estão a criação e validação de check-ins com verificações de distância, utilizando coordenadas de latitude e longitude. O sistema também implementa controle de acesso baseado em funções (RBAC), garantindo que apenas usuários autorizados possam realizar ações específicas, como a criação de academias.
+Esta API foi desenvolvida para um sistema de gym pass e oferece funcionalidades robustas para gerenciamento de academias e check-ins. Entre as principais características estão a criação e validação de check-ins com verificações de distância, utilizando coordenadas de latitude e longitude. O sistema também implementa controle de acesso baseado em funções **(RBAC)**, garantindo que apenas usuários autorizados possam realizar ações específicas, como a criação de academias.
 
 
 ## 🚀 Techs used 
@@ -22,7 +22,7 @@ Esta API foi desenvolvida para um sistema de gym pass e oferece funcionalidades 
 
 ## 📝 Desafios e Aprendizados
 
-Este projeto proporcionou uma rica experiência de aprendizado, especialmente na implementação de testes unitários e E2E, onde foi necessário manipular o schema do banco de dados e criar novos ambientes a cada teste. A automação com GitHub Actions foi outra grande conquista, trazendo uma nova dimensão de eficiência e qualidade ao processo de desenvolvimento.
+Este projeto proporcionou uma rica experiência de aprendizado, especialmente na implementação de **testes unitários** e **E2E**, onde foi necessário manipular o schema do banco de dados e criar novos ambientes a cada teste. A automação com **GitHub Actions** foi outra grande conquista, trazendo uma nova dimensão de eficiência e qualidade ao processo de desenvolvimento.
 
 ## RFs (Requisitos funcionais)
 
