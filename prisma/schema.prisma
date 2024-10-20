@@ -9,13 +9,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
-}
-
-enum Role {
-  ADMIN
-  MEMBER
 }
 
 model User {
@@ -23,7 +18,7 @@ model User {
   email         String   @unique
   name          String
   password_hash String
-  role          Role     @default(MEMBER)
+  role          String   @default("MEMBER")
   created_at    DateTime @default(now())
 
   CheckIns CheckIn[]
