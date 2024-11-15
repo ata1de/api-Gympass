@@ -9,7 +9,7 @@ export async function gymsRoutes(app: FastifyInstance) {
     app.addHook('onRequest', VerifyJwt)
 
     app.post('/gyms', { onRequest: [verifyUserRole('ADMIN')]}, create)
-    
+
     app.get('/gyms/nearby', nearby)
     app.get('/gyms/search/:query/:page', search)
 }

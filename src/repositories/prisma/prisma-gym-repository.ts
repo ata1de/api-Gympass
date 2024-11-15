@@ -1,52 +1,56 @@
-import { prisma } from "@/lib/prisma";
-import { Gym, Prisma } from "@prisma/client";
-import { FetchNearbyGymsUseCaseProps, GymRepository } from "../gyms-repository";
+import { prisma } from '@/lib/prisma'
+import { Gym, Prisma } from '@prisma/client'
+import { FetchNearbyGymsUseCaseProps, GymRepository } from '../gyms-repository'
 
 export class PrismaGymRepository implements GymRepository {
-    async create(data: Prisma.GymUncheckedCreateInput): Promise<Gym> {
-        const gym = await prisma.gym.create({
-            data
-        })
+  async create(data: Prisma.GymUncheckedCreateInput): Promise<Gym> {
+    const gym = await prisma.gym.create({
+      data,
+    })
 
-        return gym
+    return gym
+  }
+
+  async findGymById(id: string): Promise<Gym | null> {
+    const gym = await prisma.gym.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    if (!gym) {
+      return null
     }
 
-    async findGymById(id: string): Promise<Gym | null> {
-        const gym = await prisma.gym.findUnique({
-            where: {
-                id
-            }
-        })
+    return gym
+  }
 
-        if (!gym) {
-            return null
-        }
+  async findByQuery(query: string, page: number) {
+    const gyms = await prisma.gym.findMany({
+      where: {
+        name: {
+          contains: query,
+        },
+      },
+      skip: (page - 1) * 20,
+      take: 20,
+    })
 
-        return gym
-    }
+    return gyms
+  }
 
-    async findByQuery(query: string, page: number) {
-        const gyms = await prisma.gym.findMany({
-            where: {
-                name: {
-                    contains: query
-                }
-            },
-            skip: (page - 1) * 20,
-            take: 20
-        })
+  async fetchManyNearby({
+    userLatitude,
+    userLongitude,
+  }: FetchNearbyGymsUseCaseProps): Promise<Gym[]> {
+    const nearbyLatitude = 0.09
+    const nearbyLongitude = 0.09
 
-
-        return gyms
-    }
-
-    async fetchManyNearby({ userLatitude, userLongitude}: FetchNearbyGymsUseCaseProps): Promise<Gym[]> {
-        const gyms = await prisma.$queryRaw<Gym[]>`
+    const gyms = await prisma.$queryRaw<Gym[]>`
             SELECT * FROM gyms
-            WHERE ( 6371 * acos( cos( radians(${userLatitude}) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(${userLongitude}) ) + sin( radians(${userLatitude}) ) * sin( radians( latitude ) ) ) ) <= 10
-
+            WHERE latitude BETWEEN ${userLatitude - nearbyLatitude} AND ${userLatitude + nearbyLatitude}
+            AND longitude BETWEEN ${userLongitude - nearbyLongitude} AND ${userLongitude + nearbyLongitude}
         `
-        return gyms
-    }
-    
+    return gyms
+  }
 }
