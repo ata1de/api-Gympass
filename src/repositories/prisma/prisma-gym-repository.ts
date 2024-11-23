@@ -53,4 +53,19 @@ export class PrismaGymRepository implements GymRepository {
         `
     return gyms
   }
+
+  async findAll(category: string[], plans: string[]) {
+    const gyms = await prisma.gym.findMany({
+      where: {
+        category: {
+          in: category,
+        },
+        plan: {
+          in: plans,
+        }
+      },
+    })
+
+    return gyms
+  }
 }

@@ -9,5 +9,6 @@ export interface GymRepository {
     create(data: Prisma.GymUncheckedCreateInput): Promise<Gym>,
     findGymById(id: string): Promise<Gym | null>,
     findByQuery: (query: string, page: number) => Promise<Gym[]>,
-    fetchManyNearby(params: FetchNearbyGymsUseCaseProps): Promise<Gym[]>
+    fetchManyNearby(params: FetchNearbyGymsUseCaseProps): Promise<Gym[]>,
+    findAll: (categories: string[], plans: string[]) => Promise<Gym[]>
 }

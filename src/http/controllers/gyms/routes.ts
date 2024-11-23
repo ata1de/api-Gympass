@@ -12,4 +12,6 @@ export async function gymsRoutes(app: FastifyInstance) {
 
     app.get('/gyms/nearby', nearby)
     app.get('/gyms/search/:query/:page', search)
+
+    app.get('/gyms', search)
 }
