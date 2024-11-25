@@ -1,3 +1,4 @@
+import { PaginationQuery } from "@/middleware/pagination";
 import { Gym, Prisma } from "@prisma/client";
 
 export interface FetchNearbyGymsUseCaseProps {
@@ -10,5 +11,5 @@ export interface GymRepository {
     findGymById(id: string): Promise<Gym | null>,
     findByQuery: (query: string, page: number) => Promise<Gym[]>,
     fetchManyNearby(params: FetchNearbyGymsUseCaseProps): Promise<Gym[]>,
-    findAll: (categories: string[], plans: string[]) => Promise<Gym[]>
+    findAll: (categories: string[], plans: string[], pagination: PaginationQuery) => Promise<Gym[]>
 }

@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma'
+import { PaginationQuery } from '@/middleware/pagination'
 import { Gym, Prisma } from '@prisma/client'
 import { FetchNearbyGymsUseCaseProps, GymRepository } from '../gyms-repository'
 
@@ -54,7 +55,7 @@ export class PrismaGymRepository implements GymRepository {
     return gyms
   }
 
-  async findAll(category: string[], plans: string[]) {
+  async findAll(category: string[], plans: string[], pagination: PaginationQuery) {
     const gyms = await prisma.gym.findMany({
       where: {
         category: {
@@ -64,6 +65,8 @@ export class PrismaGymRepository implements GymRepository {
           in: plans,
         }
       },
+      skip: Number(pagination.offset),
+      take: Number(pagination.limit),
     })
 
     return gyms
